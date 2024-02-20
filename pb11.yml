@@ -1,0 +1,22 @@
+---
+- name: create users and copy files into usershome dirs
+  hosts: all
+  tasks:
+   - name: create users
+     apt:
+       name: "{{item.a}}"
+       password: "{{item.b}}"
+       home: "{{item.c}}"
+     with_items:
+       - {a: raju,b: intelliqit,c: /home/raju}
+       - {a: rani,b: intelliqit,c: /tmp/rani}
+   - name: copy files into users home dirs
+     copy: 
+        src: "{{items.a}}"
+        dest: "{{items.b}}"
+     with_items:
+       - {a: /etc/passwd,b: /home/raju}
+       - {a: /etc/group,b: /tmp/rani}
+
+...
+

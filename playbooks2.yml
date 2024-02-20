@@ -1,0 +1,26 @@
+---
+- name: configuring apache2
+  hosts: all
+  tasks:
+    - name: Install apache2 on all servers
+      apt: 
+        name: apache2
+        state: present
+        update_cache: yes
+    - name: Eidt the index.html file
+      copy: 
+        content: "iphone is my best"
+        dest: /var/lib/tomcat9/webapps/ROOT/index.html
+    - name: Restart apache2
+      service: 
+        name: apache2
+        state: restarted
+    - name: check apache response on Node-1
+      uri:
+         url: http://172.31.4.116
+         status_code: 200
+    - name: check apache response on Node-2
+      uri: 
+         url: http://172.31.6.112
+         status_code: 200
+...           

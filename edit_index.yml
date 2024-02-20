@@ -1,0 +1,7 @@
+---
+- name: edit the index.html
+  copy: 
+     content: "Iphone"
+     dest: /var/www/html/index.html
+...       
+

@@ -1,0 +1,21 @@
+---
+- name: Implement tags
+  hosts: all
+  tasks:
+    - name: Install tree
+      apt:
+        name: tree
+        state: present
+        update_cache: yes
+      tags: tree-installation
+    - name: create user
+      user:
+        name: vamsi
+        password: gnna
+      tags: user_creation
+    - name: copy passwd file
+      copy:
+        src: /etc/passwd
+        dest: /tmp
+...    
+

@@ -1,0 +1,12 @@
+---
+- name: configuring apache2 using multiple child pb's
+  hosts: all
+  tasks: 
+     - name: call multiple child playbooks
+       include_tasks: "{{item}}"
+       with_items:
+          - install.yml
+          - edit_index.yml
+          - restart.yml
+          - check_apache_response.yml
+...            
